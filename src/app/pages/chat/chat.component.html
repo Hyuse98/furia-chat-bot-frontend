@@ -1,13 +1,47 @@
 <div class="chat-container">
-  <div class="chat-messages">
-    <div *ngFor="let msg of messages">
-      <div [ngClass]="{'user-message': msg.type === 'USER_MESSAGE', 'bot-message': msg.type === 'BOT_RESPONSE'}">
-        <strong>{{ msg.userId === 'user' ? 'Você' : 'Bot' }}:</strong> {{ msg.message }}
-      </div>
+  <div class="chat-header">
+    <h2>Chat</h2>
+    <div class="user-info" *ngIf="username">
+      <span>{{ username }}</span>
     </div>
   </div>
-  <div class="chat-input">
-    <input type="text" [(ngModel)]="newMessage" placeholder="Digite sua mensagem...">
-    <button (click)="sendMessage()">Enviar</button>
+
+  <div class="chat-messages" #messagesContainer>
+    <div *ngFor="let msg of messages" class="message-wrapper" [ngClass]="{'user-wrapper': msg.type === 'USER_MESSAGE', 'bot-wrapper': msg.type === 'BOT_RESPONSE'}">
+      <div class="message" [ngClass]="{'user-message': msg.type === 'USER_MESSAGE', 'bot-message': msg.type === 'BOT_RESPONSE'}">
+        <div class="message-header">
+          <span class="sender-name">{{ msg.userId === 'user' ? 'Você' : msg.userId }}</span>
+        </div>
+        <div class="message-content">
+          {{ msg.message }}
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="loading-indicator">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-notification">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+  <div class="chat-input-container">
+    <form (ngSubmit)="sendMessage()">
+      <div class="input-wrapper">
+        <input
+          type="text"
+          [(ngModel)]="newMessage"
+          name="message"
+          placeholder="Digite sua mensagem..."
+          [disabled]="loading"
+        >
+        <button type="submit" [disabled]="loading || !newMessage.trim()">
+          <span *ngIf="!loading">Enviar</span>
+          <span *ngIf="loading" class="btn-spinner"></span>
+        </button>
+      </div>
+    </form>
   </div>
 </div>
