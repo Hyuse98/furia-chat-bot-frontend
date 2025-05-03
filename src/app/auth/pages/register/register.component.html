@@ -5,4 +5,6 @@
   <input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" placeholder="Confirmar Senha" required />
   <div *ngIf="error" style="color:red">{{ error }}</div>
   <button type="submit">Registrar</button>
+
+  <a routerLink="/login">Login</a>
 </form>
