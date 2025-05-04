@@ -1,6 +1,7 @@
 <div class="chat-container">
   <div class="chat-header">
     <h2>Chat</h2>
+    <app-logout-button></app-logout-button>
     <div class="user-info" *ngIf="username">
       <span>{{ username }}</span>
     </div>
@@ -13,7 +14,9 @@
           <span class="sender-name">{{ msg.userId === 'user' ? 'Você' : msg.userId }}</span>
         </div>
         <div class="message-content">
-          {{ msg.message }}
+          <!-- Renderizar como HTML se isHtml for true, caso contrário como texto normal -->
+          <div *ngIf="msg.isHtml" [innerHTML]="safeHtml(msg.message)"></div>
+          <div *ngIf="!msg.isHtml">{{ msg.message }}</div>
         </div>
       </div>
     </div>

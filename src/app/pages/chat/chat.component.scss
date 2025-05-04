@@ -40,7 +40,7 @@
     align-items: center;
 
     span {
-      color: #7c4dff;
+      color: #ffffff;
       font-weight: 500;
     }
   }
@@ -120,7 +120,200 @@
   padding: 0.75rem 1rem;
   line-height: 1.5;
   word-wrap: break-word;
+
+  // Estilos para comandos
+  .command-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: #9575cd;
+  }
+
+  .command-item {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid #7c4dff;
+  }
+
+  .command-name {
+    font-weight: 600;
+    color: #b39ddb;
+    font-family: monospace;
+  }
+
+  .command-desc {
+    color: #e0e0e0;
+  }
+
+  // Estilos para seções
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1rem 0 0.8rem;
+    color: #9575cd;
+    display: flex;
+    align-items: center;
+
+    .emoji {
+      margin-right: 0.5rem;
+    }
+  }
+
+  // Estilos para partidas
+  .match-item {
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+
+  .team-name {
+    color: #b39ddb;
+    font-weight: 600;
+  }
+
+  .match-date {
+    margin-bottom: 0.3rem;
+    color: #bdbdbd;
+
+    .match-time {
+      font-weight: 500;
+      color: #e0e0e0;
+    }
+  }
+
+  .match-status {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &.live {
+      .status-value {
+        color: #4caf50;
+        font-weight: 600;
+      }
+    }
+
+    &.closed {
+      .status-value {
+        color: #f44336;
+      }
+    }
+
+    &.scheduled {
+      .status-value {
+        color: #2196f3;
+      }
+    }
+  }
+
+  // Estilos para emojis
+  .emoji {
+    margin-right: 0.3rem;
+  }
+
+  // Estilos para paginação
+  .pagination-info {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #9e9e9e;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .help-container {
+    background-color: rgba(124, 77, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(124, 77, 255, 0.3);
+  }
+
+  .help-header {
+    background-color: rgba(124, 77, 255, 0.2);
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .help-icon {
+    font-size: 1.4rem;
+  }
+
+  .help-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #b388ff;
+    margin: 0;
+  }
+
+  .help-section {
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(124, 77, 255, 0.2);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .section-header {
+    font-size: 1rem;
+    color: #9575cd;
+    margin: 0 0 0.6rem 0;
+    font-weight: 500;
+  }
+
+  .command-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.7rem;
+    padding: 0.5rem;
+    background-color: rgba(124, 77, 255, 0.05);
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(124, 77, 255, 0.15);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .command-icon {
+    margin-right: 0.5rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .command-name {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: rgba(124, 77, 255, 0.2);
+    color: #b39ddb;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+
+  .command-desc {
+    color: #e0e0e0;
+    flex: 1;
+  }
+
+  .help-footer {
+    font-size: 0.9rem;
+    color: #9e9e9e;
+    text-align: center;
+    padding: 0.8rem;
+    background-color: rgba(124, 77, 255, 0.05);
+    font-style: italic;
+  }
 }
+
+
 
 .loading-indicator {
   display: flex;
@@ -225,5 +418,80 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes messageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Animação para mostrar digitação
+@keyframes typingIndicator {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+// Aplicando a animação nas mensagens
+.message-wrapper {
+  animation: messageEnter 0.3s ease-out forwards;
+}
+
+// Indicador de digitação (opcional)
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #2d2d2d;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  max-width: 100px;
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #9575cd;
+    margin-right: 4px;
+    animation: typingIndicator 1.5s infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 1s;
+      margin-right: 0;
+    }
+  }
+}
+
+// Efeito de hover para mensagens
+.message {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Efeito para comandos clicáveis
+.command-item {
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    transform: translateX(3px);
+  }
+
+  &:active {
+    transform: translateX(5px);
   }
 }
