@@ -14,7 +14,6 @@
           <span class="sender-name">{{ msg.userId === 'user' ? 'Você' : msg.userId }}</span>
         </div>
         <div class="message-content">
-          <!-- Renderizar como HTML se isHtml for true, caso contrário como texto normal -->
           <div *ngIf="msg.isHtml" [innerHTML]="safeHtml(msg.message)"></div>
           <div *ngIf="!msg.isHtml">{{ msg.message }}</div>
         </div>

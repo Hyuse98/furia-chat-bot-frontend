@@ -14,7 +14,6 @@ export class AuthGuard {
       return true;
     }
 
-    // Redireciona para a página de login se não estiver autenticado
     return this.router.createUrlTree(['/login']);
   }
 }

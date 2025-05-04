@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    // Redireciona para a página de chat se já estiver autenticado
     if (this.auth.isAuthenticated()) {
       this.router.navigate(['/chat']);
     }
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit {
         } else {
           this.error = 'Erro ao fazer login. Tente novamente mais tarde.';
         }
-        console.error('Erro de login:', err);
       }
     });
   }

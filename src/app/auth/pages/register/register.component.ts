@@ -22,14 +22,12 @@ export class RegisterComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    // Redireciona para a página de chat se já estiver autenticado
     if (this.auth.isAuthenticated()) {
       this.router.navigate(['/chat']);
     }
   }
 
   register(): void {
-    // Validações básicas
     if (!this.username || !this.email || !this.password || !this.confirmPassword) {
       this.error = 'Preencha todos os campos';
       return;
@@ -44,8 +42,6 @@ export class RegisterComponent implements OnInit {
       this.error = 'A senha deve ter pelo menos 6 caracteres';
       return;
     }
-
-    // Validação simples de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(this.email)) {
       this.error = 'Email inválido';
@@ -73,7 +69,6 @@ export class RegisterComponent implements OnInit {
         } else {
           this.error = 'Erro ao registrar. Tente novamente mais tarde.';
         }
-        console.error('Erro de registro:', err);
       }
     });
   }

@@ -130,7 +130,6 @@ export class ChatComponent implements OnInit {
 
   sendMessage(): void {
     if (this.newMessage.trim() && this.username) {
-      // Verificar autenticação antes de enviar
       if (!this.authService.isAuthenticated()) {
         this.errorMessage = 'Sessão expirada. Faça login novamente.';
         setTimeout(() => this.authService.logout(), 2000);
@@ -147,7 +146,6 @@ export class ChatComponent implements OnInit {
       };
 
       this.messages.push(userMessage);
-      const currentMessage = this.newMessage;
       this.newMessage = '';
 
       this.chatService.sendMessage(userMessage).subscribe({
@@ -160,7 +158,7 @@ export class ChatComponent implements OnInit {
             response.message.includes('•') ||
             response.message.includes('📅') ||
             response.message.includes('🏆') ||
-            response.message.includes('help-container') // Detectar mensagem de ajuda
+            response.message.includes('help-container')
           ) {
             response.isHtml = true;
             if (!response.message.includes('<div class="help-container">')) {
@@ -174,8 +172,6 @@ export class ChatComponent implements OnInit {
         error: (error: any) => {
           this.loading = false;
           console.error('Erro ao enviar mensagem:', error);
-
-          // Adicionar mensagem de erro detalhada
           if (error.status === 403) {
             this.errorMessage = 'Acesso negado. Sua sessão pode ter expirado.';
             this.tryReauthentication(userMessage);
