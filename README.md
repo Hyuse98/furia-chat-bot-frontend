@@ -2,6 +2,8 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.2.
 
+Complete Project Documentation on https://github.com/Hyuse98/furia-chat-bot-backend
+
 ## Development server
 
 To start a local development server, run:
