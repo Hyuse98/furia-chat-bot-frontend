@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-logout-button',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <button *ngIf="auth.isAuthenticated()" (click)="logout()">Logout</button>
-  `
+  templateUrl: './logout-button.component.html',
+  styleUrls: ['./logout-button.component.scss']
 })
 export class LogoutButtonComponent {
   constructor(public auth: AuthService, private router: Router) {}
